@@ -29,7 +29,9 @@ public class SolrClient {
 		response = solrClient.query(parameters);
 		if(response!=null){
 			SolrDocumentList list =response.getResults();
-			result = list.get(0).get("name").toString();
+			if(list.size()>0){
+				result = list.get(0).get("name").toString();
+			}
 		}
 		return result;
 	}
@@ -61,6 +63,10 @@ public class SolrClient {
 		}finally {
 			document.clear();
 		}
+	}
+
+	public static void  delete(String prams){
+		//
 	}
 
 	public static void likeQuery() throws SolrServerException,IOException{
@@ -95,7 +101,7 @@ public class SolrClient {
 
 	public static void main(String[] args)throws Exception{
 		//SolrClient solrTest = new SolrClient();
-		query("552199");
-		//addDoc();
+		//query("552199");
+		addDoc();
 	}
 }
